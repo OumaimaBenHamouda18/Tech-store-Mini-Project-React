@@ -1,27 +1,18 @@
-import { Component } from "react";
+import React,{useState} from 'react';
 import Header from './header'
 import Footer from './footer'
 import Products from './products'
-import { PRODUCTS } from "../shared/products";
-class Main extends Component{
-    constructor(props){
-        super(props);
-        this.state=
-        {
-            products:PRODUCTS
-        };
-    }
-
-
-render(){
+function Main(props){
+    
+    const [text, setText]=useState('')
     return(
         <div>
-            <Header/>
-            <Products products={this.state.products}/>
+            <Header changeSearchText={text=>setText(text)}/>
+            <Products products={props.products}  inputSearchValue={text}/>
             <Footer/>
         </div>
     );
     }
-}
+
 
 export default Main

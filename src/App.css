@@ -1,17 +1,23 @@
 li{
   list-style:none;
 }
+
 ul li{
   padding-top: 12px;
 }
 ul{
   padding:0;
 }
+*:focus {
+ box-shadow: none !important;
+ 
+
+}
 
 /************header*********/
 .navbar-dark {
   background-color: #c2660f;
-  padding:15px;
+  padding: 20px;
 }
 .links{
   margin-left: -80px;
@@ -19,7 +25,7 @@ ul{
 .links .item{
   padding-right: 30px;
 }
-.sign{
+.login{
   margin-left: 80px;
 }
 
@@ -62,14 +68,14 @@ ul{
   margin: auto;
   padding-top: 20px;
 }
-.detailButton{
+.addProductBtn{
   float:right;
-  background-color: #c2660f;
-}
-.detailButton:hover{
   background-color: white;
   color:#c2660f;
   border:solid 2px #c2660f;
+}
+.addProductBtn:hover{
+  background-color:#c2660f;
 
 }
 .price{
@@ -77,7 +83,10 @@ ul{
   font-weight: 800;
   font-size: 1.3em;
 }
-.couple{
-  position: relative;
-  bottom:10px;
+.fa-plus{
+  transition:transform 1.5s ease-out!important;
+    transition:0s;
+
 }
+.fa-plus:hover{
+transform: rotateX(360deg);}
