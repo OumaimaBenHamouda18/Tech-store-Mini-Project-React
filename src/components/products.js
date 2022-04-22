@@ -1,6 +1,7 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Card, CardBody, CardImg,CardText, CardTitle,Button, CardSubtitle} from 'reactstrap';
 import { PRODUCTS } from "../shared/products";
+
 function filterProduct(text){
   var matches=[]; //array to save products that correspond to the search
   for(var i=0;i<PRODUCTS.length;i++){
@@ -11,27 +12,28 @@ function filterProduct(text){
   }
   return matches;
 }
-function RenderProductsItems({product}){
-  var a=product.desciption
+const RenderProductsItems=(props)=>{
+  var a=props.product.desciption
   const description = a.map((list) => {
       return (
         <li>{list}</li>
       );
   });
+ 
   return(
     <Card>
-          <CardImg className='cardImg' object src={product.image} alt={product.name} />
+          <CardImg className='cardImg' object src={props.product.image} alt={props.product.name} />
           <CardBody>
-            <CardTitle heading><h5>{product.name}</h5></CardTitle>
+            <CardTitle heading><h5>{props.product.name}</h5></CardTitle>
             <CardText>
                 <ul>
                     {description}
                 </ul>
             </CardText>
-            <div className='couple'>
-            <CardSubtitle className='price'>{product.price}</CardSubtitle>
-            <Button  className="addProductBtn btn btn-primary"><i class="fa fa-plus"></i></Button>
+            <div className='priceAdd'>
 
+            <CardSubtitle className='price'>{props.product.price}</CardSubtitle>
+            <Button  className="addProductBtn btn btn-primary" onClick={(e)=>{var items=[...props.arrayItems];items.push(props.product.name);props.productsToPurchase(items)}}><i class="fa fa-plus"></i></Button>
             </div>
           </CardBody>
     </Card>
@@ -41,39 +43,49 @@ function RenderProductsItems({product}){
 
 
 function Products(props){
+  const [arrayItems,updateArray]=useState([])//store products added to shopping cart
+  
   var products;
+  function ProductItems(){
+    if(props.inputSearchValue===''){
+   
+      products =props.products.map((product) => {
+        return (
+          <div key={product.id} className="col-12 col-md-4 ">
+            <RenderProductsItems arrayItems={arrayItems} product={product} productsToPurchase={updateArray}/>
+          </div>
+          
+          
+        );
+    });
+    }
+    else{
+      var filteredProducts=filterProduct(props.inputSearchValue)
+      
+  
+      products =filteredProducts.map((product) => {
+        return (
+          <div key={product.id} className="col-12 col-md-4 ">
+  
+           <RenderProductsItems product={product}/>
+    
+          </div>
+        );
+    });
+  
+    }
+    return products;
+  }
 //*if the search input is empty then display all products 
 //else display products according to the search value
-   if(props.inputSearchValue===''){
-    products =props.products.map((product) => {
-      return (
-        <div key={product.id} className="col-12 col-md-4 ">
-         <RenderProductsItems product={product}/>
-        </div>
-      );
-  });
-  }
-  else{
-    var filteredProducts=filterProduct(props.inputSearchValue)
-    console.log(filteredProducts);
-
-    products =filteredProducts.map((product) => {
-      return (
-        <div key={product.id} className="col-12 col-md-4 ">
-         <RenderProductsItems product={product}/>
-        </div>
-      );
-  });
-
-  }
-
-
+   
   
 return (
+ 
   <div className="container products">
-       
     <div className="row">
-          {products}
+          <ProductItems myPurchases={props.myPurchases(arrayItems)}/>{/*update purchases in parent state*/}
+
     </div>
 
    

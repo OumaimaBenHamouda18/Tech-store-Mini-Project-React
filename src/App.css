@@ -1,9 +1,13 @@
-li{
-  list-style:none;
-}
+body,html{
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 
+}
+*{margin: 0;
+  padding: 0;
+  box-sizing: border-box;}
 ul li{
   padding-top: 12px;
+  list-style:none;
 }
 ul{
   padding:0;
@@ -16,8 +20,10 @@ ul{
 
 /************header*********/
 .navbar-dark {
-  background-color: #c2660f;
+  background-color: #2D31FA;
   padding: 20px;
+}
+.searchBtn{
 }
 .links{
   margin-left: -80px;
@@ -29,8 +35,65 @@ ul{
   margin-left: 80px;
 }
 
+.shopping_cart_menu{
+  position: relative;
+  left:900px;
+  bottom: 20px;
+  
+}
+.fa-arrow-right,.fa-star {
+  float:right;
+  display: none;
 
+}
+.shooping-dropdown-item{
+  width:300px;
+}
+.shooping-dropdown-item:hover .fa-arrow-right{/* display arror icon when hover on dropdown item*/
+  
+      display: inline-block;
+      color:blue
 
+}
+
+/************Login Modalr*********/
+.loginModal{
+  width:400px;
+
+}
+.loginModal::after{
+  content: '';
+  width:50px;
+  background-color: blue;
+}
+.loginHeader{
+  color:blue;
+  font-size: 5em;
+  font-weight: 700;
+  margin-top:10px;
+  border: none;
+}
+.loginBody{
+  padding:30px;
+}
+.loginBody input[type="text"],.loginBody input[type="password"]{
+  width:350px;
+}
+.loginBody input[type="submit"]{
+  
+  background-color:blue;
+  color:white;
+  width:350px;
+  border:solid 2px blue;
+
+}
+.loginBody input[type="submit"]:hover{
+  background-color: white;
+  color:blue;
+  border:solid 2px blue;
+  font-weight: 600;
+
+}
 /************footer*********/
 .footer{
   background-color: aliceblue;
@@ -42,7 +105,7 @@ ul{
 }
 .footer a:hover{
   text-decoration:underline;
-  color:#c2660f;
+  color:blue;
   font-weight:400;
 }
 
@@ -53,6 +116,7 @@ ul{
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
   margin:10px;
   padding: 5px;
+  display:flex; flex-direction:column; flex:1;
 }
 
 .card li{
@@ -67,17 +131,24 @@ ul{
   width:60%;
   margin: auto;
   padding-top: 20px;
+  transition: 500ms;
+}
+.cardImg:hover{
+  width:70%;
+  transform: scale(0.8);
 }
 .addProductBtn{
   float:right;
   background-color: white;
-  color:#c2660f;
-  border:solid 2px #c2660f;
+  color:blue;
+  border:solid 1px blue;
 }
 .addProductBtn:hover{
-  background-color:#c2660f;
+  background-color:blue;
+  float: right;
 
 }
+
 .price{
   float: left;
   font-weight: 800;
@@ -90,3 +161,5 @@ ul{
 }
 .fa-plus:hover{
 transform: rotateX(360deg);}
+.priceAdd{
+}
